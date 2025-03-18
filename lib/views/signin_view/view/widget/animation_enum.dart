@@ -1,0 +1,15 @@
+enum AnimationEnum {
+  idle,
+  // eye_cover,
+  // idle_look_around,
+  // success,
+  fail,
+  // look_right,
+  // look_left,
+  look_idle,
+  look_left,
+  look_right,
+  success,
+  eye_cover,
+  idle_look_around,
+}
