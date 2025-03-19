@@ -6,9 +6,7 @@ sealed class SignupState {}
 final class SignupInitial extends SignupState {}
 
 final class SignupLoadingState extends SignupState {
-  Center loading(){
-     return Center(child: CircularProgressIndicator());
-  }
+  
 }
 
 final class SignupSuccessState extends SignupState {
