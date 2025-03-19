@@ -14,7 +14,7 @@ class SlidingTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 180,
-      left: 60,
+      left: 45,
       child: AnimatedBuilder(
         animation: slidingAnimation,
         builder: (context, _) {

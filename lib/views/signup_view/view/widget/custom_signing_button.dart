@@ -9,8 +9,8 @@ VoidCallback? onTap;
     return  GestureDetector(
       onTap: onTap,
       child: Container(
-            decoration: BoxDecoration( color: Colors.white,
-              borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration( color: Colors.orange,
+              borderRadius: BorderRadius.circular(25)),
             width: 350,height: 50,
           
            child: Center(child: Text( ButtonText,style: const TextStyle(fontSize: 20),))

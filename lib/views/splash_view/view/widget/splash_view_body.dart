@@ -20,7 +20,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initState() {
     super.initState();
     animatedMethod();
-    navigateToNext();
+   navigateToNext();
   }
   @override
   void dispose() {

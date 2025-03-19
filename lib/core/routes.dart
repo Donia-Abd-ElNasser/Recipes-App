@@ -5,7 +5,8 @@ import 'package:recipes_app/views/signin_view/view/signin_view.dart';
 
 import '../views/home_view/view/home_view.dart';
 import '../views/onboarding_view/view/onboarding_view.dart';
-import '../views/signup_view/view/signup_view.dart';
+import '../views/signup_view/view/sign_up_view.dart';
+
 import '../views/splash_view/view/splash_view.dart';
 
 abstract class AppRoutes {
