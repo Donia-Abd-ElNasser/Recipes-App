@@ -33,7 +33,7 @@ class SignupViewBody extends StatelessWidget {
             title: 'Success',
             desc: state.succmsg,
             btnOkOnPress: () {
-              GoRouter.of(context).push(AppRoutes.kSigninView);
+              GoRouter.of(context).pushReplacement(AppRoutes.kSigninView,extra: nameController.text);
             },
           ).show();
         } else if (state is SignupFailureState) {
@@ -75,7 +75,7 @@ class SignupViewBody extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 70),
-                CustomFormTextField(controller: nameController, text: 'Name'),
+                //CustomFormTextField(controller: nameController, text: 'Name'),
                 SizedBox(height: 15),
                 CustomFormTextField(controller: emailController, text: 'Email'),
                 SizedBox(height: 15),

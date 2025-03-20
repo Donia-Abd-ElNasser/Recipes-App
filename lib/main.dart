@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipes_app/core/constants.dart';
 import 'package:recipes_app/core/routes.dart';
 import 'package:recipes_app/firebase_options.dart';
+import 'package:recipes_app/views/signin_view/view_model/signin_cubit/signin_cubit.dart';
 import 'package:recipes_app/views/signup_view/view_model/signup_cubit/signup_cubit.dart';
 
 void main() async {
@@ -25,7 +26,7 @@ class RecipesApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
 BlocProvider(create: (context)=>SignupCubit()),
-
+BlocProvider(create: (context)=>SigninCubit()),
 
       ],
       child: MaterialApp.router(

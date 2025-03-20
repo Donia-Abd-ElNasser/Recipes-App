@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:recipes_app/core/constants.dart';
 
 class CustomSignInButton extends StatelessWidget {
   const CustomSignInButton({
@@ -21,7 +22,7 @@ final void Function()? onTap;
                 child: Container(
                   width: MediaQuery.of(context).size.width,height: 50,
                   decoration: BoxDecoration(
-                 color: Color(0xff726660),
+                 color: kButtonColor,
                  // padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                             
                     borderRadius: BorderRadius.circular(30),

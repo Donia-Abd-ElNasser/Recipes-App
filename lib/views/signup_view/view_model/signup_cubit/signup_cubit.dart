@@ -7,33 +7,40 @@ part 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
   SignupCubit() : super(SignupInitial());
+
   Future<void> registerUser({
     required String email,
     required String password,
   }) async {
     emit(SignupLoadingState());
-    try {
-      UserCredential user = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
-      emit(
-        SignupSuccessState(succmsg: 'You have been Registered Successfully'),
-      );
-      print('tmam');
-    } on FirebaseAuthException catch (e) {
-      print(' fe moshkla');
-      if (e.code == 'weak-password') {
-        emit(SignupFailureState(errmessage: e.code));
-        print('weak');
-      } else if (e.code == 'email-already-in-use') {
-        emit(SignupFailureState(errmessage: e.code));
 
-        print('mawgood');
-      } else if (e.code == 'The email address is badly formatted.') {
-        emit(SignupFailureState(errmessage: e.code));
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+
+      // التأكد من أن `user` تم إنشاؤه بالفعل وليس `null`
+      if (userCredential.user != null) {
+        emit(SignupSuccessState(succmsg: 'You have been Registered Successfully'));
+      } else {
+        emit(SignupFailureState(errmessage: 'Unexpected error, please try again.'));
+      }
+    } on FirebaseAuthException catch (e) {
+      debugPrint('FirebaseAuthException: ${e.code}');
+
+      if (e.code == 'weak-password') {
+        emit(SignupFailureState(errmessage: 'The password is too weak.'));
+      } else if (e.code == 'email-already-in-use') {
+        emit(SignupFailureState(errmessage: 'This email is already in use.'));
+      } else if (e.code == 'invalid-email') {
+        emit(SignupFailureState(errmessage: 'The email address is badly formatted.'));
+      } else if (e.code == 'network-request-failed') {
+        emit(SignupFailureState(errmessage: 'No internet connection.'));
+      } else {
+        emit(SignupFailureState(errmessage: 'Signup failed: ${e.message}'));
       }
     } catch (e) {
-      emit(SignupFailureState(errmessage: e.toString()));
-      print('error');
+      debugPrint('Unexpected error: $e');
+      emit(SignupFailureState(errmessage: 'An unexpected error occurred.'));
     }
   }
 }

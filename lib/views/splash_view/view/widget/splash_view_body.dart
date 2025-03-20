@@ -36,7 +36,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
         DecoratedBox(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/splash_image.jpg'),
+              image: AssetImage('assets/im2.jpg'),
               fit: BoxFit.cover,
             ),
           ),
@@ -48,17 +48,17 @@ class _SplashViewBodyState extends State<SplashViewBody>
    void animatedMethod() {
      animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 3),
+      duration: Duration(seconds: 2),
     );
     slidingAnimation = Tween<Offset>(
-      begin: Offset(0, 6),
+      begin: Offset(1, 0),
       end: Offset.zero,
     ).animate(animationController);
     animationController.forward();
   }
    void navigateToNext() {
-    Future.delayed(const Duration(seconds: 4), () {
-      GoRouter.of(context).push(AppRoutes.kOnboardingView);
+    Future.delayed(const Duration(seconds: 3), () {
+      GoRouter.of(context).pushReplacement(AppRoutes.kOnboardingView);
     });
   }
 }

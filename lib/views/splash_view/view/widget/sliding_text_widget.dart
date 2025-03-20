@@ -13,7 +13,7 @@ class SlidingTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 180,
+      top: 100,
       left: 45,
       child: AnimatedBuilder(
         animation: slidingAnimation,
@@ -21,11 +21,11 @@ class SlidingTextWidget extends StatelessWidget {
           return SlideTransition(
             position: slidingAnimation,
             child: Text(
-              'Delicious recipes, one tap away!',
+              'Craving something tasty?\nLet''s find the perfect recipe😋',
               style: TextStyle(
-                color:  Colors.orange,
-                fontWeight: FontWeight.w800,
-                fontSize: 20,
+                color:  const Color.fromARGB(255, 92, 28, 4),
+                fontWeight: FontWeight.w900,
+                fontSize: 22,
                 fontFamily: kGtsectrafont
               ),
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipes_app/core/constants.dart';
 
 class SigningButton extends StatelessWidget {
     SigningButton({super.key, this.onTap , required this.ButtonText});
@@ -9,7 +10,7 @@ VoidCallback? onTap;
     return  GestureDetector(
       onTap: onTap,
       child: Container(
-            decoration: BoxDecoration( color: Colors.orange,
+            decoration: BoxDecoration( color: kButtonColor,
               borderRadius: BorderRadius.circular(25)),
             width: 350,height: 50,
           

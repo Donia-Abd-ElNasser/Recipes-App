@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipes_app/core/constants.dart';
 
 class CustomFormTextField extends StatelessWidget {
   CustomFormTextField(
@@ -20,15 +21,15 @@ class CustomFormTextField extends StatelessWidget {
       },
       onChanged: onChange,
        decoration: InputDecoration(
-        errorStyle:TextStyle(color: Colors.orange) ,
-       labelStyle: TextStyle(color: Colors.orange),
+        errorStyle:TextStyle(color: kButtonColor) ,
+       labelStyle: TextStyle(color: kButtonColor),
                       labelText: text,
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.orange),
+                        borderSide: BorderSide(color: kButtonColor),
                          borderRadius: BorderRadius.circular(25.0),
                       ) ,
                        focusedBorder:OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.orange),
+                        borderSide: BorderSide(color: kButtonColor),
                          borderRadius: BorderRadius.circular(25.0),
                       ) ,
                       border: OutlineInputBorder(

@@ -16,7 +16,7 @@ class OnboardingViewBody extends StatelessWidget {
         DecoratedBox(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/signin_page.jpg'),
+              image: AssetImage('assets/splash.jpg'),
               fit: BoxFit.cover,
             ),
           ),
@@ -24,12 +24,12 @@ class OnboardingViewBody extends StatelessWidget {
         CustomSignInButton(
           text: 'Sign in',
           bottomPosition: 120,
-          onTap: () => GoRouter.of(context).push(AppRoutes.kSigninView),
+          onTap: () => GoRouter.of(context).pushReplacement(AppRoutes.kSigninView),
         ),
         CustomSignInButton(
           text: 'Sign up',
           bottomPosition: 60,
-          onTap: () => GoRouter.of(context).push(AppRoutes.kSignupView),
+          onTap: () => GoRouter.of(context).pushReplacement(AppRoutes.kSignupView),
         ),
       ],
     );
