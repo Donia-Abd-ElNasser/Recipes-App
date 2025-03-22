@@ -1,10 +1,13 @@
 import 'package:go_router/go_router.dart';
+import 'package:recipes_app/views/profile_view/view/profile_view.dart';
+import 'package:recipes_app/views/recipes_details_view/view/recipes_details_view.dart';
 import 'package:recipes_app/views/signin_view/view/signin_view.dart';
 
 
 
 import '../views/home_view/view/home_view.dart';
 import '../views/onboarding_view/view/onboarding_view.dart';
+import '../views/saved_view/view/saved_view.dart';
 import '../views/signup_view/view/sign_up_view.dart';
 
 import '../views/splash_view/view/splash_view.dart';
@@ -15,9 +18,12 @@ abstract class AppRoutes {
    static const kHomeView = '/HomeView';
  static const kSigninView = '/SigninView';
  static const kSignupView = '/SignupView';
+  static const kSavedView = '/FavouriteView';
+   static const kProfileView = '/Profileiew';
+   static const kRecipesDetailsView='/RecipesView';
   static final routers = GoRouter(routes: [
     GoRoute(
-      path: '/',
+      path: 'ikjlkn',
       builder: (context, state) => const SplashView(),
     ),
     GoRoute(
@@ -25,7 +31,7 @@ abstract class AppRoutes {
       builder: (context, state) => const OnboardingView(),
     ),
     GoRoute(
-      path: kHomeView,
+      path: '/',
       builder: (context, state) => const HomeView(),
     ),
     GoRoute(
@@ -35,6 +41,18 @@ abstract class AppRoutes {
     GoRoute(
       path: kSignupView,
       builder: (context, state) => const SignUpView(),
+    ),
+    GoRoute(
+      path: kSavedView,
+      builder: (context, state) => const SavedView(),
+    ),
+    GoRoute(
+      path: kProfileView,
+      builder: (context, state) => const ProfileView(),
+    ),
+     GoRoute(
+      path: kRecipesDetailsView,
+      builder: (context, state) => const RecipesDetailsView(),
     ),
     // GoRoute(
     //   path: '/BookDetailsView',
