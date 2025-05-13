@@ -12,7 +12,7 @@ class RecipesItemsList extends StatelessWidget {
                 clipBehavior: Clip.none,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.8,
+                  childAspectRatio: 0.9,
                   crossAxisSpacing: 15,
                   mainAxisSpacing: 20,
                 ),  physics: const NeverScrollableScrollPhysics(),

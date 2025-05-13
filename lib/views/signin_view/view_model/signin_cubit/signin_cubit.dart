@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
+import 'package:recipes_app/core/shared_preference.dart';
+
 
 part 'signin_state.dart';
 
@@ -20,13 +22,19 @@ class SigninCubit extends Cubit<SigninState> {
       );
 
       if (userCredential.user != null) {
+        // Get the token
+        String? token = await userCredential.user?.getIdToken();
+
+        if (token != null) {
+          await CacheHelper.saveData(key: 'token', value: token);
+        }
+
         emit(SigninSuccessState());
       } else {
         emit(SigninFailureState('Unexpected error, please try again.'));
       }
-      
+
     } on FirebaseAuthException catch (e) {
-       
       emit(SigninFailureState(_getFirebaseErrorMessage(e.code)));
     } catch (e) {
       emit(SigninFailureState('An unexpected error occurred.'));
@@ -34,9 +42,6 @@ class SigninCubit extends Cubit<SigninState> {
   }
 
   String _getFirebaseErrorMessage(String errorCode) {
-    print('------------');
-    print(errorCode);
-     print('------------');
     switch (errorCode) {
       case 'invalid-email':
         return 'The email address is not valid.';
@@ -49,6 +54,5 @@ class SigninCubit extends Cubit<SigninState> {
       default:
         return 'Login failed. Please try again.';
     }
-    
   }
 }

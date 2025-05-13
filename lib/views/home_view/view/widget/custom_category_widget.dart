@@ -11,16 +11,14 @@ class CategoryWidget extends StatelessWidget {
 final String categoryName;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        width: 100,height: 40,
-        decoration: BoxDecoration(
-          color:kWidgetColor,
-          borderRadius: BorderRadius.circular(25),
-          
-        ),
-        child: Center(child: Text(categoryName,style: TextStyle(fontSize: 16,fontFamily: kGtsectrafont))),
+    return Container(
+      width: 100,height: 40,
+      decoration: BoxDecoration(
+        color:kWidgetColor,
+        borderRadius: BorderRadius.circular(25),
+        
       ),
+      child: Center(child: Text(categoryName,style: TextStyle(fontSize: 16,fontFamily: kGtsectrafont))),
     );
   }
 }

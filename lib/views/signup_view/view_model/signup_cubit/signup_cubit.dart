@@ -2,6 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:recipes_app/core/shared_preference.dart';
+
+
 
 part 'signup_state.dart';
 
@@ -18,8 +21,12 @@ class SignupCubit extends Cubit<SignupState> {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
 
-      // التأكد من أن `user` تم إنشاؤه بالفعل وليس `null`
       if (userCredential.user != null) {
+        String? token = await userCredential.user?.getIdToken();
+
+        if (token != null) {
+          await CacheHelper.saveData(key: 'token', value: token);
+        }
         emit(SignupSuccessState(succmsg: 'You have been Registered Successfully'));
       } else {
         emit(SignupFailureState(errmessage: 'Unexpected error, please try again.'));

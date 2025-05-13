@@ -39,7 +39,7 @@ class HomeViewBody extends StatelessWidget {
                           'Meal Category',
                           style: TextStyle(
                             fontSize: 20,
-                            fontFamily: kGtsectrafont,
+                           fontFamily: kGtsectrafont,
                           ),
                         ),
                         Icon(
@@ -62,7 +62,7 @@ class HomeViewBody extends StatelessWidget {
             
 
            
-            SliverToBoxAdapter(
+            SliverFillRemaining(
               child: RecipesItemsList()
             ),
           ],
