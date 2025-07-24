@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:recipes_app/core/routes.dart';
+import 'package:recipes_app/core/utils/routes.dart';
 
 import 'sliding_text_widget.dart';
 

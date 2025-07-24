@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipes_app/core/constants.dart';
+import 'package:recipes_app/core/utils/constants.dart';
 
 class CustomGreyText extends StatelessWidget {
   const CustomGreyText({

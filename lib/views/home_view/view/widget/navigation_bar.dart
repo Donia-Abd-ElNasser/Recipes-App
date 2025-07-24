@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:recipes_app/core/constants.dart';
-import 'package:recipes_app/core/routes.dart';
+import 'package:recipes_app/core/utils/constants.dart';
+import 'package:recipes_app/core/utils/routes.dart';
 
 
 class CategoryBar extends StatelessWidget {

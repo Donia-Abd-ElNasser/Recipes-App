@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants.dart' show kGtsectrafont;
+import '../../../../core/utils/constants.dart' show kGtsectrafont;
 
 class Recipe extends StatelessWidget {
   const Recipe({

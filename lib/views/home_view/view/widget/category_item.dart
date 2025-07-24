@@ -1,12 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:go_router/go_router.dart';
-import 'package:recipes_app/core/constants.dart';
-import 'package:recipes_app/core/routes.dart';
+
+import 'package:recipes_app/core/utils/constants.dart';
+import 'package:recipes_app/core/utils/routes.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({super.key});
+  const CategoryItem({Key? key, required this.image, required this.name})
+    : super(key: key);
+  final int selected = 0;
+  final String image;
+
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -14,71 +20,57 @@ class CategoryItem extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20),
       child: GestureDetector(
         onTap: () {
-            GoRouter.of(context).push(AppRoutes.kRecipesDetailsView);
-          },
+          GoRouter.of(context).push(AppRoutes.kRecipesDetailsView);
+        },
         child: Container(
           width: MediaQuery.of(context).size.width / 2.3,
-         // height: 40,
           decoration: BoxDecoration(
             color: kWidgetColor,
             borderRadius: BorderRadius.circular(25),
           ),
-        
+
           child: Stack(
             clipBehavior: Clip.none,
             children: [
               Positioned(
-                bottom: 105,
-                right: 48,
-                child: Image.asset(
-                  'assets/chickenByrani 1.jpg',
-                  height: 80,
-                  width: 50,
-                ),
+                bottom: 85,
+                right: 40,
+                child: ClipRRect(
+                  borderRadius:   BorderRadius.circular(250),
+                  child: Image.network(image, height: 80, width: 80)),
               ),
-                  
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 10),
-                  Text(
-                    'chicken',
-                    maxLines: 1,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: kGtsectrafont,
-                      fontSize: 18,
+
+              SizedBox(
+                height: 200,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                   //crossAxisAlignment: CrossAxisAlignment,
+                  children: [
+                    SizedBox(height: 80),
+                    Text(
+                      name,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: kGtsectrafont,
+                        fontSize: 12,
+                      ),
                     ),
-                  ),
-                  Text('⭐⭐⭐⭐⭐', style: const TextStyle(fontSize: 12)),
-                  SizedBox(height: 5),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Row(
-                                         // crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Icon(FontAwesomeIcons.earthAfrica, size: 16),
-                          SizedBox(width: 5),
-                          Text(
-                            'Japanese',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: kGtsectrafont,
-                            ),
-                          ), //SizedBox(width: 5),
-                          IconButton(onPressed: (){
-                           
-                                  GoRouter.of(context).push(AppRoutes.kRecipesDetailsView);
-                              
-                          }, icon: Icon(FontAwesomeIcons.solidBookmark ,size: 16,))
+                          Text('⭐⭐⭐⭐⭐', style: const TextStyle(fontSize: 12)),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(FontAwesomeIcons.solidBookmark, size: 14),
+                          ),
                         ],
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

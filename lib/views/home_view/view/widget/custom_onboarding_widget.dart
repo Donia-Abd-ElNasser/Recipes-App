@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:recipes_app/core/constants.dart';
+import 'package:recipes_app/core/utils/constants.dart';
 
 import 'package:recipes_app/views/home_view/view/widget/custom_grey_text.dart';
 

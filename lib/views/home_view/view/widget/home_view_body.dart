@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:recipes_app/core/constants.dart';
-import 'package:recipes_app/views/home_view/view/widget/category_item.dart';
+import 'package:recipes_app/core/utils/constants.dart';
+
 import 'package:recipes_app/views/home_view/view/widget/custom_category_list.dart';
 import 'package:recipes_app/views/home_view/view/widget/custom_grey_text.dart';
 import 'package:recipes_app/views/home_view/view/widget/custom_onboarding_widget.dart';
@@ -17,7 +17,7 @@ class HomeViewBody extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: CustomScrollView(
           slivers: [
-            // Wrap all non-sliver widgets in SliverToBoxAdapter
+           
             SliverToBoxAdapter(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class HomeViewBody extends StatelessWidget {
             
 
            
-            SliverFillRemaining(
+            SliverToBoxAdapter(
               child: RecipesItemsList()
             ),
           ],

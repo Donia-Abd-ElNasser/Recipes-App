@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:recipes_app/core/constants.dart';
+import 'package:recipes_app/core/utils/constants.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
-import 'package:recipes_app/core/constants.dart';
+import 'package:recipes_app/core/utils/constants.dart';
 import 'package:recipes_app/views/recipes_details_view/view/widget/custom_button.dart';
 
 import 'package:recipes_app/views/recipes_details_view/view/widget/resources_button.dart';

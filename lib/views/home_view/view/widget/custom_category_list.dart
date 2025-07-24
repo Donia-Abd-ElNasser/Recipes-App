@@ -4,7 +4,6 @@ import 'package:recipes_app/views/home_view/view/widget/custom_category_widget.d
 class CategoryListView extends StatelessWidget {
    CategoryListView({super.key});
 final List<String>categoryNamesList=[
-  '🥙 All',
 '🍕  Pizza',
 '🍗 Chicken',
 '🥩 Beef',
@@ -24,11 +23,18 @@ final List<String>categoryNamesList=[
       height: 40,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 11,
+        itemCount: 10,
         itemBuilder: (context,index){
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5,),
-            child: CategoryWidget(categoryName: categoryNamesList[index],),
+            child: GestureDetector
+            (
+              onTap: (){
+                
+              },
+              
+              
+              child: CategoryWidget(categoryName: categoryNamesList[index],)),
           );}),
     );
      
