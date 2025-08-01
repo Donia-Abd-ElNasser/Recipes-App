@@ -20,6 +20,7 @@ final IconData icon;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onTap,
       child: Container(
     
         height: 50,width: 150,

@@ -17,16 +17,17 @@ class HomeRepoImpl implements HomeRepo {
      
     try {
       
-      var data = await apiServices.get(endPoint: 'list.php?c=list');
-      final categories = data['meals'];
+      var data = await apiServices.get(endPoint: 'search.php?s=');
+      final meals = data['meals'];
 
-      for (var cat in categories) {
-        var catName = cat['strCategory'];
-        var res = await apiServices.get(endPoint: 'filter.php?c=$catName');
-        for (var meal in res['meals']) {
-          allMeals.add(Meal.fromJson(meal));
+      for (var cat in meals) {
+   
+       if(cat['strMealThumb']!=null){
+           allMeals.add(Meal.fromJson(cat));
+       }
+    
         }
-      }
+      
       return Right(allMeals);
     } on Exception catch (e) {
        if (e is DioException) {
@@ -41,12 +42,46 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, List<Meal>>> fetchCategories({
     required String catName,
   }) async {
+    List<Meal>allMeals=[];
     try {
       var data = await apiServices.get(endPoint: 'filter.php?c=$catName');
-
-      return right(data['meals']);
+      final meals =data['meals'];
+for (var cat in meals) {
+      
+       if(cat!=null){
+           allMeals.add(Meal.fromJson(cat));
+       }
+    
+        }
+      return right(allMeals);
     } on Exception catch (e) {
       if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      } else {
+        return left(ServerFailure(errMessage: e.toString()));
+      }
+    }
+  }
+  Future<Either<Failure, List<Meal>>> SearchRecipe({required String searchWord}) async {
+  
+    final List<Meal> allMeals = [];
+     
+    try {
+      
+      var data = await apiServices.get(endPoint: 'search.php?s=$searchWord');
+      final meals = data['meals'];
+if(meals!=null){
+      for (var cat in meals) {
+   
+       if(cat['strMealThumb']!=null){
+           allMeals.add(Meal.fromJson(cat));
+       }
+    
+        }
+}
+      return Right(allMeals);
+    } on Exception catch (e) {
+       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       } else {
         return left(ServerFailure(errMessage: e.toString()));

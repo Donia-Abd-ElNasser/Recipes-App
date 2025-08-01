@@ -7,20 +7,21 @@ import 'package:recipes_app/core/utils/constants.dart';
 import 'package:recipes_app/core/utils/routes.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({Key? key, required this.image, required this.name})
+  const CategoryItem({Key? key, required this.image, required this.name, required this.id})
     : super(key: key);
   final int selected = 0;
   final String image;
-
+final String id;
   final String name;
 
   @override
   Widget build(BuildContext context) {
+   
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: GestureDetector(
         onTap: () {
-          GoRouter.of(context).push(AppRoutes.kRecipesDetailsView);
+          GoRouter.of(context).push(AppRoutes.kRecipesDetailsView,extra: id);
         },
         child: Container(
           width: MediaQuery.of(context).size.width / 2.3,
@@ -57,7 +58,7 @@ class CategoryItem extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      padding: const EdgeInsets.only(left: 15.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [

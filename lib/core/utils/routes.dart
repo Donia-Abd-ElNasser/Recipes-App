@@ -1,8 +1,10 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recipes_app/views/home_view/view/home_view.dart';
 import 'package:recipes_app/views/onboarding_view/view/onboarding_view.dart';
 import 'package:recipes_app/views/profile_view/view/profile_view.dart';
 import 'package:recipes_app/views/recipes_details_view/view/recipes_details_view.dart';
+import 'package:recipes_app/views/recipes_details_view/view_model/recipe_deatails/recipe_details_cubit.dart';
 import 'package:recipes_app/views/saved_view/view/saved_view.dart';
 import 'package:recipes_app/views/signin_view/view/signin_view.dart';
 import 'package:recipes_app/views/signup_view/view/sign_up_view.dart';
@@ -18,7 +20,7 @@ abstract class AppRoutes {
   static const kRecipesDetailsView = '/recipesDetailsView';
 
   /// Method to determine the initial route dynamically
-  
+ 
   static GoRouter getRouter({required bool isLoggedIn}) {
     return GoRouter(
      initialLocation: isLoggedIn ? kHomeView : '/',
@@ -33,7 +35,10 @@ abstract class AppRoutes {
         ),
         GoRoute(
           path: kHomeView,
-          builder: (context, state) => const HomeView(),
+          builder: (context, state) {
+           final name = state.extra != null ? state.extra as String : 'Guest';
+            return HomeView(userName: name);
+          },
         ),
         GoRoute(
           path: kSigninView,
@@ -53,7 +58,13 @@ abstract class AppRoutes {
         ),
         GoRoute(
           path: kRecipesDetailsView,
-          builder: (context, state) => const RecipesDetailsView(),
+          builder: (context, state) {
+    final String id = state.extra != null ? state.extra as String : '';
+    return   BlocProvider(
+      create: (_) => RecipeDetailsCubit()..fetchRecipe(id: id),
+      child: RecipesDetailsView(id: id),
+    );
+  },
         ),
       ],
     );

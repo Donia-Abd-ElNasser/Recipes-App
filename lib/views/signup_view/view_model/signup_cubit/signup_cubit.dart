@@ -20,17 +20,21 @@ class SignupCubit extends Cubit<SignupState> {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+if (userCredential.user != null) {
+      emit(SignupSuccessState(succmsg: 'You have been Registered Successfully'));
+    } else {
+      emit(SignupFailureState(errmessage: 'Unexpected error, please try again.'));
+    }
+      // if (userCredential.user != null) {
+      //   String? token = await userCredential.user?.getIdToken();
 
-      if (userCredential.user != null) {
-        String? token = await userCredential.user?.getIdToken();
-
-        if (token != null) {
-          await CacheHelper.saveData(key: 'token', value: token);
-        }
-        emit(SignupSuccessState(succmsg: 'You have been Registered Successfully'));
-      } else {
-        emit(SignupFailureState(errmessage: 'Unexpected error, please try again.'));
-      }
+      //   if (token != null) {
+      //     await CacheHelper.saveData(key: 'token', value: token);
+        // }
+       // emit(SignupSuccessState(succmsg: 'You have been Registered Successfully'));
+      // } else {
+      //   emit(SignupFailureState(errmessage: 'Unexpected error, please try again.'));
+      // }
     } on FirebaseAuthException catch (e) {
       debugPrint('FirebaseAuthException: ${e.code}');
 

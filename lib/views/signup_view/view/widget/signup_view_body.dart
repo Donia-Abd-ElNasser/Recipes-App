@@ -53,52 +53,66 @@ class SignupViewBody extends StatelessWidget {
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.all(16),
-          child: Form(
-            key: formKey,
-            child: ListView(
-              children: [
-                const SizedBox(height: 120),
-                Center(
-                  child: const Text(
-                    "Get Started With Us",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: kGtsectrafont,
-                    ),
-                  ),
-                ),
-                Center(
-                  child: const Text(
-                    'Welcome ,please enter your details',
-                    style: TextStyle(color: Colors.grey, fontSize: 13),
-                  ),
-                ),
-                const SizedBox(height: 70),
-                //CustomFormTextField(controller: nameController, text: 'Name'),
-                SizedBox(height: 15),
-                CustomFormTextField(controller: emailController, text: 'Email'),
-                SizedBox(height: 15),
-                CustomFormTextField(
-                  controller: passwordController,
-                  obscureText: true,
-                  text: 'Password',
-                ),
-                SizedBox(height: 50),
-
-                SigningButton(
-                  ButtonText: 'Sign Up',
-                  onTap: () async {
-                    if (formKey.currentState!.validate()) {
-                      BlocProvider.of<SignupCubit>(context).registerUser(
-                        email: emailController.text,
-                        password: passwordController.text,
-                      );
-                    }
+          child: Stack(
+            children: [
+               Positioned(
+                top: 5,
+                left: -10,
+                child: IconButton(
+                  onPressed: () {
+                    GoRouter.of(context).push(AppRoutes.kOnboardingView);
                   },
+                  icon: const Icon(Icons.arrow_back),
                 ),
-              ],
-            ),
+              ),
+              Form(
+                key: formKey,
+                child: ListView(
+                  children: [
+                    const SizedBox(height: 120),
+                    Center(
+                      child: const Text(
+                        "Get Started With Us",
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: kGtsectrafont,
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: const Text(
+                        'Welcome ,please enter your details',
+                        style: TextStyle(color: Colors.grey, fontSize: 13),
+                      ),
+                    ),
+                    const SizedBox(height: 70),
+                    //CustomFormTextField(controller: nameController, text: 'Name'),
+                    SizedBox(height: 15),
+                    CustomFormTextField(controller: emailController, text: 'Email'),
+                    SizedBox(height: 15),
+                    CustomFormTextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      text: 'Password',
+                    ),
+                    SizedBox(height: 50),
+              
+                    SigningButton(
+                      ButtonText: 'Sign Up',
+                      onTap: () async {
+                        if (formKey.currentState!.validate()) {
+                          BlocProvider.of<SignupCubit>(context).registerUser(
+                            email: emailController.text,
+                            password: passwordController.text,
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         );
       },

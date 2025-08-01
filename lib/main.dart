@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,20 +9,23 @@ import 'package:recipes_app/core/shared_preference.dart';
 import 'package:recipes_app/core/utils/service_locator.dart';
 import 'package:recipes_app/firebase_options.dart';
 import 'package:recipes_app/views/home_view/view_model/meals/meals_cubit.dart';
+import 'package:recipes_app/views/recipes_details_view/view/widget/recipes_details_view_body.dart';
+import 'package:recipes_app/views/recipes_details_view/view_model/recipe_deatails/recipe_details_cubit.dart';
+import 'package:recipes_app/views/saved_view/view_model/savedRecipe/saved_recipe_cubit.dart';
 import 'package:recipes_app/views/signin_view/view_model/signin_cubit/signin_cubit.dart';
 import 'package:recipes_app/views/signup_view/view_model/signup_cubit/signup_cubit.dart';
 
 void main() async {
    setupGetIt();
   WidgetsFlutterBinding.ensureInitialized();
-  await CacheHelper.init();
+ await CacheHelper.init();
   if (Firebase.apps.isEmpty) {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-  }
+ }
 
-  //Check if token exists
+ // Check if token exists
   String? token = CacheHelper.getData(key: 'token');
   bool isLoggedIn = token != null;
 
@@ -29,7 +33,7 @@ void main() async {
 }
 
 class RecipesApp extends StatelessWidget {
-  final bool isLoggedIn;
+   final bool isLoggedIn;
  
   const RecipesApp({super.key,required this.isLoggedIn});
 
@@ -40,9 +44,11 @@ class RecipesApp extends StatelessWidget {
         BlocProvider(create: (context) => SignupCubit()),
         BlocProvider(create: (context) => SigninCubit()),
       BlocProvider(create: (context)=>MealsCubit(getIt.get<HomeRepoImpl>())..fetchAllMeals()),
+      BlocProvider(create: (context) => SavedRecipeCubit()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
+        
         routerConfig: AppRoutes.getRouter(isLoggedIn: isLoggedIn),
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: kPrimaryColor,

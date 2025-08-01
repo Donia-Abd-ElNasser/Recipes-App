@@ -24,7 +24,7 @@ class RecipesItemsList extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
            shrinkWrap: true,
             itemBuilder: (context, index) {
-              return CategoryItem(image: state.meals[index].imageUrl,  name: state.meals[index].name);
+              return CategoryItem(image: state.meals[index].imageUrl,  name: state.meals[index].name,id:state.meals[index].id ,);
             },
           );
         }else if (state is MealLoading){

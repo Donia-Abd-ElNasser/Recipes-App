@@ -3,6 +3,7 @@ class Meal {
   final String name;
   final String imageUrl;
 
+
   Meal({
     required this.id,
     required this.name,
@@ -10,10 +11,10 @@ class Meal {
   });
 
   factory Meal.fromJson(Map<String, dynamic> json) {
-    return Meal(
-      id: json['idMeal'],
-      name: json['strMeal'],
-      imageUrl: json['strMealThumb'],
-    );
-  }
+  return Meal(
+    id: json['idMeal'] ?? '',
+    name: json['strMeal'] ?? '',
+    imageUrl: json['strMealThumb'] ?? '',
+  );
+}
 }
